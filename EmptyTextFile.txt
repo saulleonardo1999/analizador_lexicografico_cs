@@ -1,9 +1,29 @@
 ﻿void main ( ) {
-    int helloWorld ;
-    bool flag ;
-    if ( flag ) {
-        helloWorld = 1 ;
-    } else {
-        helloWorld = 0 ;
+    int helloWorld;
+    bool flag;
+    if(flag){
+        helloWorld=1*1;
+    }else{
+        helloWorld=5/10;
     }
+    
+    int aux = 5+2;
+    int var = 5-4;
+    
+    if (aux == var){
+        flag = true;
+    }else if (aux != var){
+        flag = false;
+    }
+    
+    if(!flag){
+        helloWorld = aux;
+    }
+    float f = 1.5;
+    
+    //Este es un comentario ///
+ 
+    /*
+        Este es un comentario en bloque 
+    */
 }

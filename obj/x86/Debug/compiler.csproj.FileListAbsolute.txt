@@ -3,3 +3,4 @@
 /home/saul/Documentos/Csh/compiler/compiler/obj/x86/Debug/compiler.csproj.CoreCompileInputs.cache
 /home/saul/Documentos/Csh/compiler/compiler/obj/x86/Debug/compiler.exe
 /home/saul/Documentos/Csh/compiler/compiler/obj/x86/Debug/compiler.pdb
+/home/saul/Documentos/Csh/compiler/compiler/obj/x86/Debug/compiler.csprojAssemblyReference.cache

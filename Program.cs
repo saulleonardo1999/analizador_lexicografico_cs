@@ -20,20 +20,34 @@ namespace compiler{
     class TokenType
     {
         public const string 
-            TKN_BEGIN = "Inicio", 
-            TKN_END = "Final", 
-            TKN_READ = "Leer", 
-            TKN_WRITE = "Escribir", 
             TKN_ID = "Identificador",
             TKN_NUM = "Número", 
+
             TKN_LPAREN = "Símbolo (", 
-            TKN_RPAREN = "Símbolo )", 
+            TKN_RPAREN = "Símbolo )",
+            TKN_LKEY = "Símbolo {",
+            TKN_RKEY = "Símbolo }",
             TKN_SEMICOLON = "Símbolo ;", 
             TKN_COMMA = "Símbolo ,",
             TKN_ASSIGN = "Símbolo =", 
             TKN_ADD = "Símbolo +", 
-            TKN_MINUS = "Símbolo -", 
-            TKN_EOL = "Símbolo \0", 
+            TKN_MINUS = "Símbolo -",
+            TKN_SQR = "Símbolo ^",
+            TKN_MULT = "Símbolo *",
+            TKN_DIV = "Símbolo /",
+            TKN_COMM = "Comentario //",
+            TKN_RSCOMM = "Comentario bloque abierto /*",
+            TKN_LSCOMM = "Comentario bloque cerrado */",
+            TKN_MAJ = "Símbolo >",
+            TKN_MAJE = "Símbolo >=",
+            TKN_MIN = "Símbolo <",
+            TKN_MINE = "Símbolo <=",
+            TKN_EQUAL = "Símbolo ==",
+
+            TKN_DIFF = "Símbolo !=",
+            TKN_INV = "Símbolo !",
+
+
             TKN_ERROR = "Error";
     }
     class Token
@@ -48,7 +62,7 @@ namespace compiler{
 
         public string GetToken()
         {
-            return ("Lexema: " + lexema + "\nToken: " + tokenType + "\n\n");
+            return ("LEXEMA:\t" + lexema + "\nTOKEN:\t" + tokenType + "\n\n");
         }
     }
    
@@ -62,10 +76,12 @@ namespace compiler{
 
         enum Status{
             IN_START, IN_ID, IN_NUM, IN_LPAREN, IN_RPAREN, IN_SEMICOLON,
-            IN_COMMA, IN_ASSIGN, IN_ADD, IN_MINUS, IN_EOF, IN_ERROR, IN_DONE
+            IN_COMMA, IN_ASSIGN, IN_ADD, IN_MINUS, IN_EOF, IN_ERROR, IN_DONE,
+
+            IN_MINOR, IN_MAJOR, IN_EQUAL, IN_DIFF, IN_DIV, IN_MULT, IN_DOT
         }
         private readonly string[] ReservedWords = new string[] {
-            "program", "if ", "else", "fi", "do", "until", "while",
+            "program", "if", "else", "fi", "do", "until", "while",
             "read", "write", "float", "int", "bool", "not", "and", "or"
         };
 
@@ -162,6 +178,18 @@ namespace compiler{
                             s = Status.IN_DONE;
                             token.lexema += c;
                         }
+                        else if (c == '{')
+                        {
+                            token.tokenType = TokenType.TKN_LKEY;
+                            s = Status.IN_DONE;
+                            token.lexema += c;
+                        }
+                        else if (c == '}')
+                        {
+                            token.tokenType = TokenType.TKN_RKEY;
+                            s = Status.IN_DONE;
+                            token.lexema += c;
+                        }
                         else if (c == ';')
                         {
                             token.tokenType = TokenType.TKN_SEMICOLON;
@@ -171,12 +199,6 @@ namespace compiler{
                         else if (c == ',')
                         {
                             token.tokenType = TokenType.TKN_COMMA;
-                            s = Status.IN_DONE;
-                            token.lexema += c;
-                        }
-                        else if (c == '=')
-                        {
-                            token.tokenType = TokenType.TKN_ASSIGN;
                             s = Status.IN_DONE;
                             token.lexema += c;
                         }
@@ -192,6 +214,42 @@ namespace compiler{
                             s = Status.IN_DONE;
                             token.lexema += c;
                         }
+                        else if (c == '^')
+                        {
+                            token.tokenType = TokenType.TKN_SQR;
+                            s = Status.IN_DONE;
+                            token.lexema += c;
+                        }
+                        else if (c == '*')
+                        {
+                            s = Status.IN_MULT;
+                            token.lexema += c;
+                        }
+                        else if (c == '>')
+                        {
+                            s = Status.IN_MAJOR;
+                            token.lexema += c;
+                        }
+                        else if (c == '<')
+                        {
+                            s = Status.IN_MINOR;
+                            token.lexema += c;
+                        }
+                        else if (c == '/')
+                        {
+                            s = Status.IN_DIV;
+                            token.lexema += c;
+                        }
+                        else if (c == '=')
+                        {
+                            s = Status.IN_EQUAL;
+                            token.lexema += c;
+                        }
+                        else if (c == '!')
+                        {
+                            s = Status.IN_DIFF;
+                            token.lexema += c;
+                        }
                         else
                         {
                             token.lexema += c;
@@ -199,12 +257,33 @@ namespace compiler{
                             s = Status.IN_DONE;
                         }
                         break;
+                    case Status.IN_DOT:
+                        c = GetChar();
+                        token.lexema += c;
+                        if (char.IsDigit(c))
+                        {
+                            s = Status.IN_NUM;
+                        }
+                        else
+                        {
+                            token.tokenType = TokenType.TKN_NUM;
+                            s = Status.IN_DONE;
+                            UnGetChar();
+                            token.lexema = token.lexema.Remove(token.lexema.Length - 1);
+                        }
+                        break;
                     case Status.IN_NUM:
                         c = GetChar();
                         token.lexema += c;
-                        if (!char.IsDigit(c)){
+                        if ( c == '.')
+                        {
+                            s = Status.IN_DOT;
+                        }
+                        else if (!char.IsDigit(c)){
                             token.tokenType = TokenType.TKN_NUM;
                             s = Status.IN_DONE;
+                            UnGetChar();
+                            token.lexema = token.lexema.Remove(token.lexema.Length - 1);
                         }
                         break;
                     case Status.IN_ID:
@@ -214,7 +293,110 @@ namespace compiler{
                         {
                             token.tokenType = TokenType.TKN_ID;
                             s = Status.IN_DONE;
+                            UnGetChar();
+                            token.lexema = token.lexema.Remove(token.lexema.Length - 1);
                             token = FindReservedWords(token.lexema);
+                        }
+                        break;
+                    case Status.IN_MULT:
+                        c = GetChar();
+                        token.lexema += c;
+                        if (c == '/')
+                        {
+                            token.tokenType = TokenType.TKN_LSCOMM;
+                            s = Status.IN_DONE;
+                        }
+                        else
+                        {
+                            token.tokenType = TokenType.TKN_MULT;
+                            s = Status.IN_DONE;
+                            UnGetChar();
+                            token.lexema = token.lexema.Remove(token.lexema.Length - 1);
+                        }
+                        break;
+                    case Status.IN_DIV:
+                        c = GetChar();
+                        token.lexema += c;
+                        if (c == '*')
+                        {
+                            token.tokenType = TokenType.TKN_RSCOMM;
+                            s = Status.IN_DONE;
+                        }
+                        else if (c == '/')
+                        {
+                            token.tokenType = TokenType.TKN_COMM;
+                            s = Status.IN_DONE;
+                        }
+                        else
+                        {
+                            token.tokenType = TokenType.TKN_DIV;
+                            s = Status.IN_DONE;
+                            UnGetChar();
+                            token.lexema = token.lexema.Remove(token.lexema.Length - 1);
+                        }
+                        break;
+                    case Status.IN_MAJOR:
+                        c = GetChar();
+                        token.lexema += c;
+                        if (c == '=')
+                        {
+                            token.tokenType = TokenType.TKN_MAJE;
+                            s = Status.IN_DONE;
+                        }
+                        else
+                        {
+                            token.tokenType = TokenType.TKN_MAJ;
+                            s = Status.IN_DONE;
+                            UnGetChar();
+                            token.lexema = token.lexema.Remove(token.lexema.Length - 1);
+                        }
+                        break;
+                    case Status.IN_MINOR:
+                        c = GetChar();
+                        token.lexema += c;
+                        if (c == '=')
+                        {
+                            token.tokenType = TokenType.TKN_MINE;
+                            s = Status.IN_DONE;
+                        }
+                        else
+                        {
+                            token.tokenType = TokenType.TKN_MIN;
+                            s = Status.IN_DONE;
+                            UnGetChar();
+                            token.lexema = token.lexema.Remove(token.lexema.Length - 1);
+                        }
+                        break;
+                    case Status.IN_EQUAL:
+                        c = GetChar();
+                        token.lexema += c;
+                        if (c == '=')
+                        {
+                            token.tokenType = TokenType.TKN_EQUAL;
+                            s = Status.IN_DONE;
+                        }
+                        else
+                        {
+                            token.tokenType = TokenType.TKN_ASSIGN;
+                            s = Status.IN_DONE;
+                            UnGetChar();
+                            token.lexema = token.lexema.Remove(token.lexema.Length - 1);
+                        }
+                        break;
+                    case Status.IN_DIFF:
+                        c = GetChar();
+                        token.lexema += c;
+                        if (c == '=')
+                        {
+                            token.tokenType = TokenType.TKN_DIFF;
+                            s = Status.IN_DONE;
+                        }
+                        else
+                        {
+                            token.tokenType = TokenType.TKN_INV;
+                            s = Status.IN_DONE;
+                            UnGetChar();
+                            token.lexema = token.lexema.Remove(token.lexema.Length - 1);
                         }
                         break;
                     default:
