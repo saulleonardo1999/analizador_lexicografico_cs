@@ -1,0 +1,9 @@
+﻿void main ( ) {
+    int helloWorld ;
+    bool flag ;
+    if ( flag ) {
+        helloWorld = 1 ;
+    } else {
+        helloWorld = 0 ;
+    }
+}
