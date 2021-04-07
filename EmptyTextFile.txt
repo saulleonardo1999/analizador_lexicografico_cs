@@ -21,8 +21,7 @@
     }
     float f = 1.5;
     
-    //Este es un comentario ///
- 
+    //Este es un comentario
     /*
         Este es un comentario en bloque 
     */

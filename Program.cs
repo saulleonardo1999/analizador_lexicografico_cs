@@ -9,12 +9,19 @@ namespace compiler{
     class MainClass{
         public static void Main(string[] args){
 
-            string text = File.ReadAllText("/home/saul/Documentos/Csh/compiler/compiler/EmptyTextFile.txt");
+            string text = File.ReadAllText(args[0]);
          
             Analizer analized = new Analizer(text);
             analized.Analize();
             Console.WriteLine(analized.report);
-           
+
+            string path = Directory.GetCurrentDirectory() + "/analizer.txt";
+            Console.Write(path);
+            // Create a file to write to.
+            using (StreamWriter sw = File.CreateText(path))
+            {
+                sw.Write(analized.report);
+            }
         }
     }
     class TokenType
@@ -52,17 +59,28 @@ namespace compiler{
     }
     class Token
     {
-        public string lexema;
-        public string tokenType;
+        public string lexema, tokenType;
+        public int row, col;
         public Token()
         {
             lexema = "";
             tokenType = "";
+            row = 0;
+            col = 0;
         }
 
         public string GetToken()
         {
-            return ("LEXEMA:\t" + lexema + "\nTOKEN:\t" + tokenType + "\n\n");
+            return (
+                "LEXEMA:\t" + 
+                lexema + 
+                "\nTOKEN:\t" + 
+                tokenType + 
+                "\nLINEA: " +
+                row +
+                " CARACTER: " +
+                col + 
+                "\n\n");
         }
     }
    
@@ -71,7 +89,7 @@ namespace compiler{
         private readonly string text;
         public string report;
         private List<Token> tokens;
-        private int index;
+        private int index, col, row;
 
 
         enum Status{
@@ -80,7 +98,7 @@ namespace compiler{
 
             IN_MINOR, IN_MAJOR, IN_EQUAL, IN_DIFF, IN_DIV, IN_MULT, IN_DOT
         }
-        private readonly string[] ReservedWords = new string[] {
+        private readonly string[] ReservedWords = {
             "program", "if", "else", "fi", "do", "until", "while",
             "read", "write", "float", "int", "bool", "not", "and", "or"
         };
@@ -91,6 +109,8 @@ namespace compiler{
             this.text = text;
             tokens = new List<Token>();
             index = -1;
+            col = 1;
+            row = 1;
             report = "Aún no se ha efectuado el análisis o analisis nulo";
         }
         public void Analize()
@@ -117,12 +137,22 @@ namespace compiler{
         private char GetChar()
         {
             index++;
+            MovePosition();
             return text[index];
         }
-
+        private void MovePosition()
+        {
+            col++;
+            if( text[index] == '\n')
+            {
+                col = 1;
+                row++;
+            }
+        }
         private void UnGetChar()
         {
             index--;
+            col--;
         }
         private Token FindReservedWords(string lexema)
         {
@@ -171,6 +201,7 @@ namespace compiler{
                             token.tokenType = TokenType.TKN_LPAREN;
                             s = Status.IN_DONE;
                             token.lexema += c;
+
                         }
                         else if (c == ')')
                         {
@@ -195,6 +226,7 @@ namespace compiler{
                             token.tokenType = TokenType.TKN_SEMICOLON;
                             s = Status.IN_DONE;
                             token.lexema += c;
+                            token.col = col - token.lexema.Length;
                         }
                         else if (c == ',')
                         {
@@ -408,6 +440,8 @@ namespace compiler{
                 }
 
             }
+            token.row = row;
+            token.col = col - token.lexema.Length;
             return token;
         }
 

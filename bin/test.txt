@@ -1,0 +1,404 @@
+LEXEMA:	void
+TOKEN:	Identificador
+LINEA: 1 CARACTER: 1
+
+LEXEMA:	main
+TOKEN:	Identificador
+LINEA: 1 CARACTER: 6
+
+LEXEMA:	(
+TOKEN:	Símbolo (
+LINEA: 1 CARACTER: 11
+
+LEXEMA:	)
+TOKEN:	Símbolo )
+LINEA: 1 CARACTER: 13
+
+LEXEMA:	{
+TOKEN:	Símbolo {
+LINEA: 1 CARACTER: 15
+
+LEXEMA:	int
+TOKEN:	Palabra Reservada int
+LINEA: 2 CARACTER: 5
+
+LEXEMA:	helloWorld
+TOKEN:	Identificador
+LINEA: 2 CARACTER: 9
+
+LEXEMA:	;
+TOKEN:	Símbolo ;
+LINEA: 2 CARACTER: 19
+
+LEXEMA:	bool
+TOKEN:	Palabra Reservada bool
+LINEA: 3 CARACTER: 5
+
+LEXEMA:	flag
+TOKEN:	Identificador
+LINEA: 3 CARACTER: 10
+
+LEXEMA:	;
+TOKEN:	Símbolo ;
+LINEA: 3 CARACTER: 14
+
+LEXEMA:	if
+TOKEN:	Palabra Reservada if
+LINEA: 4 CARACTER: 5
+
+LEXEMA:	(
+TOKEN:	Símbolo (
+LINEA: 4 CARACTER: 7
+
+LEXEMA:	flag
+TOKEN:	Identificador
+LINEA: 4 CARACTER: 8
+
+LEXEMA:	)
+TOKEN:	Símbolo )
+LINEA: 4 CARACTER: 12
+
+LEXEMA:	{
+TOKEN:	Símbolo {
+LINEA: 4 CARACTER: 13
+
+LEXEMA:	helloWorld
+TOKEN:	Identificador
+LINEA: 5 CARACTER: 9
+
+LEXEMA:	=
+TOKEN:	Símbolo =
+LINEA: 5 CARACTER: 19
+
+LEXEMA:	1
+TOKEN:	Número
+LINEA: 5 CARACTER: 20
+
+LEXEMA:	*
+TOKEN:	Símbolo *
+LINEA: 5 CARACTER: 21
+
+LEXEMA:	1
+TOKEN:	Número
+LINEA: 5 CARACTER: 22
+
+LEXEMA:	;
+TOKEN:	Símbolo ;
+LINEA: 5 CARACTER: 23
+
+LEXEMA:	}
+TOKEN:	Símbolo }
+LINEA: 6 CARACTER: 5
+
+LEXEMA:	else
+TOKEN:	Palabra Reservada else
+LINEA: 6 CARACTER: 6
+
+LEXEMA:	{
+TOKEN:	Símbolo {
+LINEA: 6 CARACTER: 10
+
+LEXEMA:	helloWorld
+TOKEN:	Identificador
+LINEA: 7 CARACTER: 9
+
+LEXEMA:	=
+TOKEN:	Símbolo =
+LINEA: 7 CARACTER: 19
+
+LEXEMA:	5
+TOKEN:	Número
+LINEA: 7 CARACTER: 20
+
+LEXEMA:	/
+TOKEN:	Símbolo /
+LINEA: 7 CARACTER: 21
+
+LEXEMA:	10
+TOKEN:	Número
+LINEA: 7 CARACTER: 22
+
+LEXEMA:	;
+TOKEN:	Símbolo ;
+LINEA: 7 CARACTER: 24
+
+LEXEMA:	}
+TOKEN:	Símbolo }
+LINEA: 8 CARACTER: 5
+
+LEXEMA:	int
+TOKEN:	Palabra Reservada int
+LINEA: 10 CARACTER: 5
+
+LEXEMA:	aux
+TOKEN:	Identificador
+LINEA: 10 CARACTER: 9
+
+LEXEMA:	=
+TOKEN:	Símbolo =
+LINEA: 10 CARACTER: 13
+
+LEXEMA:	5
+TOKEN:	Número
+LINEA: 10 CARACTER: 15
+
+LEXEMA:	+
+TOKEN:	Símbolo +
+LINEA: 10 CARACTER: 16
+
+LEXEMA:	2
+TOKEN:	Número
+LINEA: 10 CARACTER: 17
+
+LEXEMA:	;
+TOKEN:	Símbolo ;
+LINEA: 10 CARACTER: 18
+
+LEXEMA:	int
+TOKEN:	Palabra Reservada int
+LINEA: 11 CARACTER: 5
+
+LEXEMA:	var
+TOKEN:	Identificador
+LINEA: 11 CARACTER: 9
+
+LEXEMA:	=
+TOKEN:	Símbolo =
+LINEA: 11 CARACTER: 13
+
+LEXEMA:	5
+TOKEN:	Número
+LINEA: 11 CARACTER: 15
+
+LEXEMA:	-
+TOKEN:	Símbolo -
+LINEA: 11 CARACTER: 16
+
+LEXEMA:	4
+TOKEN:	Número
+LINEA: 11 CARACTER: 17
+
+LEXEMA:	;
+TOKEN:	Símbolo ;
+LINEA: 11 CARACTER: 18
+
+LEXEMA:	if
+TOKEN:	Palabra Reservada if
+LINEA: 13 CARACTER: 5
+
+LEXEMA:	(
+TOKEN:	Símbolo (
+LINEA: 13 CARACTER: 8
+
+LEXEMA:	aux
+TOKEN:	Identificador
+LINEA: 13 CARACTER: 9
+
+LEXEMA:	==
+TOKEN:	Símbolo ==
+LINEA: 13 CARACTER: 13
+
+LEXEMA:	var
+TOKEN:	Identificador
+LINEA: 13 CARACTER: 16
+
+LEXEMA:	)
+TOKEN:	Símbolo )
+LINEA: 13 CARACTER: 19
+
+LEXEMA:	{
+TOKEN:	Símbolo {
+LINEA: 13 CARACTER: 20
+
+LEXEMA:	flag
+TOKEN:	Identificador
+LINEA: 14 CARACTER: 9
+
+LEXEMA:	=
+TOKEN:	Símbolo =
+LINEA: 14 CARACTER: 14
+
+LEXEMA:	true
+TOKEN:	Identificador
+LINEA: 14 CARACTER: 16
+
+LEXEMA:	;
+TOKEN:	Símbolo ;
+LINEA: 14 CARACTER: 20
+
+LEXEMA:	}
+TOKEN:	Símbolo }
+LINEA: 15 CARACTER: 5
+
+LEXEMA:	else
+TOKEN:	Palabra Reservada else
+LINEA: 15 CARACTER: 6
+
+LEXEMA:	if
+TOKEN:	Palabra Reservada if
+LINEA: 15 CARACTER: 11
+
+LEXEMA:	(
+TOKEN:	Símbolo (
+LINEA: 15 CARACTER: 14
+
+LEXEMA:	aux
+TOKEN:	Identificador
+LINEA: 15 CARACTER: 15
+
+LEXEMA:	!=
+TOKEN:	Símbolo !=
+LINEA: 15 CARACTER: 19
+
+LEXEMA:	var
+TOKEN:	Identificador
+LINEA: 15 CARACTER: 22
+
+LEXEMA:	)
+TOKEN:	Símbolo )
+LINEA: 15 CARACTER: 25
+
+LEXEMA:	{
+TOKEN:	Símbolo {
+LINEA: 15 CARACTER: 26
+
+LEXEMA:	flag
+TOKEN:	Identificador
+LINEA: 16 CARACTER: 9
+
+LEXEMA:	=
+TOKEN:	Símbolo =
+LINEA: 16 CARACTER: 14
+
+LEXEMA:	false
+TOKEN:	Identificador
+LINEA: 16 CARACTER: 16
+
+LEXEMA:	;
+TOKEN:	Símbolo ;
+LINEA: 16 CARACTER: 21
+
+LEXEMA:	}
+TOKEN:	Símbolo }
+LINEA: 17 CARACTER: 5
+
+LEXEMA:	if
+TOKEN:	Palabra Reservada if
+LINEA: 19 CARACTER: 5
+
+LEXEMA:	(
+TOKEN:	Símbolo (
+LINEA: 19 CARACTER: 7
+
+LEXEMA:	!
+TOKEN:	Símbolo !
+LINEA: 19 CARACTER: 8
+
+LEXEMA:	flag
+TOKEN:	Identificador
+LINEA: 19 CARACTER: 9
+
+LEXEMA:	)
+TOKEN:	Símbolo )
+LINEA: 19 CARACTER: 13
+
+LEXEMA:	{
+TOKEN:	Símbolo {
+LINEA: 19 CARACTER: 14
+
+LEXEMA:	helloWorld
+TOKEN:	Identificador
+LINEA: 20 CARACTER: 9
+
+LEXEMA:	=
+TOKEN:	Símbolo =
+LINEA: 20 CARACTER: 20
+
+LEXEMA:	aux
+TOKEN:	Identificador
+LINEA: 20 CARACTER: 22
+
+LEXEMA:	;
+TOKEN:	Símbolo ;
+LINEA: 20 CARACTER: 25
+
+LEXEMA:	}
+TOKEN:	Símbolo }
+LINEA: 21 CARACTER: 5
+
+LEXEMA:	float
+TOKEN:	Palabra Reservada float
+LINEA: 22 CARACTER: 5
+
+LEXEMA:	f
+TOKEN:	Identificador
+LINEA: 22 CARACTER: 11
+
+LEXEMA:	=
+TOKEN:	Símbolo =
+LINEA: 22 CARACTER: 13
+
+LEXEMA:	1.5
+TOKEN:	Número
+LINEA: 22 CARACTER: 15
+
+LEXEMA:	;
+TOKEN:	Símbolo ;
+LINEA: 22 CARACTER: 18
+
+LEXEMA:	//
+TOKEN:	Comentario //
+LINEA: 24 CARACTER: 5
+
+LEXEMA:	Este
+TOKEN:	Identificador
+LINEA: 24 CARACTER: 7
+
+LEXEMA:	es
+TOKEN:	Identificador
+LINEA: 24 CARACTER: 12
+
+LEXEMA:	un
+TOKEN:	Identificador
+LINEA: 24 CARACTER: 15
+
+LEXEMA:	comentario
+TOKEN:	Identificador
+LINEA: 25 CARACTER: -10
+
+LEXEMA:	/*
+TOKEN:	Comentario bloque abierto /*
+LINEA: 26 CARACTER: 5
+
+LEXEMA:	Este
+TOKEN:	Identificador
+LINEA: 27 CARACTER: 9
+
+LEXEMA:	es
+TOKEN:	Identificador
+LINEA: 27 CARACTER: 14
+
+LEXEMA:	un
+TOKEN:	Identificador
+LINEA: 27 CARACTER: 17
+
+LEXEMA:	comentario
+TOKEN:	Identificador
+LINEA: 27 CARACTER: 20
+
+LEXEMA:	en
+TOKEN:	Identificador
+LINEA: 27 CARACTER: 31
+
+LEXEMA:	bloque
+TOKEN:	Identificador
+LINEA: 27 CARACTER: 34
+
+LEXEMA:	*/
+TOKEN:	Comentario bloque cerrado */
+LINEA: 28 CARACTER: 5
+
+LEXEMA:	}
+TOKEN:	Símbolo }
+LINEA: 29 CARACTER: 1
+
