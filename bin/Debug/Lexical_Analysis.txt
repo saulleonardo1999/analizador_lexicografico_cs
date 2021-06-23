@@ -1,0 +1,124 @@
+LEXEMA:	program
+TOKEN:	Palabra Reservada program
+LINEA: 1 CARACTER: 1
+
+LEXEMA:	{
+TOKEN:	Símbolo {
+LINEA: 1 CARACTER: 8
+
+LEXEMA:	int
+TOKEN:	Palabra Reservada int
+LINEA: 2 CARACTER: 3
+
+LEXEMA:	x
+TOKEN:	Identificador
+LINEA: 2 CARACTER: 7
+
+LEXEMA:	;
+TOKEN:	Símbolo ;
+LINEA: 2 CARACTER: 8
+
+LEXEMA:	do
+TOKEN:	Palabra Reservada do
+LINEA: 3 CARACTER: 3
+
+LEXEMA:	{
+TOKEN:	Símbolo {
+LINEA: 3 CARACTER: 5
+
+LEXEMA:	if
+TOKEN:	Palabra Reservada if
+LINEA: 4 CARACTER: 5
+
+LEXEMA:	(
+TOKEN:	Símbolo (
+LINEA: 4 CARACTER: 7
+
+LEXEMA:	x
+TOKEN:	Identificador
+LINEA: 4 CARACTER: 8
+
+LEXEMA:	>
+TOKEN:	Símbolo >
+LINEA: 4 CARACTER: 9
+
+LEXEMA:	0
+TOKEN:	Número
+LINEA: 4 CARACTER: 10
+
+LEXEMA:	)
+TOKEN:	Símbolo )
+LINEA: 4 CARACTER: 11
+
+LEXEMA:	{
+TOKEN:	Símbolo {
+LINEA: 4 CARACTER: 12
+
+LEXEMA:	x
+TOKEN:	Identificador
+LINEA: 5 CARACTER: 7
+
+LEXEMA:	=
+TOKEN:	Símbolo =
+LINEA: 5 CARACTER: 8
+
+LEXEMA:	x
+TOKEN:	Identificador
+LINEA: 5 CARACTER: 9
+
+LEXEMA:	+
+TOKEN:	Símbolo +
+LINEA: 5 CARACTER: 10
+
+LEXEMA:	79
+TOKEN:	Número
+LINEA: 5 CARACTER: 11
+
+LEXEMA:	;
+TOKEN:	Símbolo ;
+LINEA: 5 CARACTER: 13
+
+LEXEMA:	}
+TOKEN:	Símbolo }
+LINEA: 6 CARACTER: 5
+
+LEXEMA:	fi
+TOKEN:	Palabra Reservada fi
+LINEA: 7 CARACTER: -2
+
+LEXEMA:	}
+TOKEN:	Símbolo }
+LINEA: 8 CARACTER: 3
+
+LEXEMA:	until
+TOKEN:	Palabra Reservada until
+LINEA: 8 CARACTER: 4
+
+LEXEMA:	(
+TOKEN:	Símbolo (
+LINEA: 8 CARACTER: 9
+
+LEXEMA:	x
+TOKEN:	Identificador
+LINEA: 8 CARACTER: 10
+
+LEXEMA:	>
+TOKEN:	Símbolo >
+LINEA: 8 CARACTER: 11
+
+LEXEMA:	0
+TOKEN:	Número
+LINEA: 8 CARACTER: 12
+
+LEXEMA:	)
+TOKEN:	Símbolo )
+LINEA: 8 CARACTER: 13
+
+LEXEMA:	;
+TOKEN:	Símbolo ;
+LINEA: 8 CARACTER: 14
+
+LEXEMA:	}
+TOKEN:	Símbolo }
+LINEA: 9 CARACTER: 1
+

@@ -1,98 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-namespace compiler{
+using compiler.Lexic;
 
-    class MainClass{
-        public static void Main(string[] args){
-
-            string text = File.ReadAllText(args[0]);
-         
-            Analizer analized = new Analizer(text);
-            analized.Analize();
-            Console.WriteLine(analized.report);
-
-            string path = Directory.GetCurrentDirectory() + "/analizer.txt";
-            Console.Write(path);
-            // Create a file to write to.
-            using (StreamWriter sw = File.CreateText(path))
-            {
-                sw.Write(analized.report);
-            }
-        }
-    }
-    class TokenType
+namespace compiler.Lexical
+{
+    class LexicalAnalyzer
     {
-        public const string 
-            TKN_ID = "Identificador",
-            TKN_NUM = "Número", 
-
-            TKN_LPAREN = "Símbolo (", 
-            TKN_RPAREN = "Símbolo )",
-            TKN_LKEY = "Símbolo {",
-            TKN_RKEY = "Símbolo }",
-            TKN_SEMICOLON = "Símbolo ;", 
-            TKN_COMMA = "Símbolo ,",
-            TKN_ASSIGN = "Símbolo =", 
-            TKN_ADD = "Símbolo +", 
-            TKN_MINUS = "Símbolo -",
-            TKN_SQR = "Símbolo ^",
-            TKN_MULT = "Símbolo *",
-            TKN_DIV = "Símbolo /",
-            TKN_COMM = "Comentario //",
-            TKN_RSCOMM = "Comentario bloque abierto /*",
-            TKN_LSCOMM = "Comentario bloque cerrado */",
-            TKN_MAJ = "Símbolo >",
-            TKN_MAJE = "Símbolo >=",
-            TKN_MIN = "Símbolo <",
-            TKN_MINE = "Símbolo <=",
-            TKN_EQUAL = "Símbolo ==",
-
-            TKN_DIFF = "Símbolo !=",
-            TKN_INV = "Símbolo !",
-
-
-            TKN_ERROR = "Error";
-    }
-    class Token
-    {
-        public string lexema, tokenType;
-        public int row, col;
-        public Token()
-        {
-            lexema = "";
-            tokenType = "";
-            row = 0;
-            col = 0;
-        }
-
-        public string GetToken()
-        {
-            return (
-                "LEXEMA:\t" + 
-                lexema + 
-                "\nTOKEN:\t" + 
-                tokenType + 
-                "\nLINEA: " +
-                row +
-                " CARACTER: " +
-                col + 
-                "\n\n");
-        }
-    }
-   
-    class Analizer
-    {
-        private readonly string text;
-        public string report;
-        private List<Token> tokens;
+        private readonly String text;
+        public String report;
+        public List<Token> tokens;
         private int index, col, row;
 
 
-        enum Status{
+        enum Status
+        {
             IN_START, IN_ID, IN_NUM, IN_LPAREN, IN_RPAREN, IN_SEMICOLON,
             IN_COMMA, IN_ASSIGN, IN_ADD, IN_MINUS, IN_EOF, IN_ERROR, IN_DONE,
 
@@ -104,7 +25,7 @@ namespace compiler{
         };
 
 
-        public Analizer (string text)
+        public LexicalAnalyzer(string text)
         {
             this.text = text;
             tokens = new List<Token>();
@@ -119,7 +40,8 @@ namespace compiler{
             Token token = new Token();
             token = FindToken();
             tokens.Add(token);
-            while ( index != text.Length-1){
+            while (index != text.Length - 1)
+            {
                 token = FindToken();
                 tokens.Add(token);
             }
@@ -129,21 +51,21 @@ namespace compiler{
         private void GenerateReport()
         {
             report = "";
-            foreach(Token token in tokens)
+            foreach (Token token in tokens)
             {
                 report += token.GetToken();
             }
         }
         private char GetChar()
         {
-            index++;
-            MovePosition();
+                index++;
+                MovePosition();
             return text[index];
         }
         private void MovePosition()
         {
             col++;
-            if( text[index] == '\n')
+            if ( text[index] == '\n' )
             {
                 col = 1;
                 row++;
@@ -158,21 +80,22 @@ namespace compiler{
         {
             Token token = new Token();
 
-            foreach(string word in ReservedWords)
+            foreach (string word in ReservedWords)
             {
                 if (lexema.Equals(word))
                 {
                     token.lexema = word;
                     token.tokenType = "Palabra Reservada " + word;
-                    return token; 
+                    return token;
                 }
             }
             token.lexema = lexema;
-            token.tokenType = TokenType.TKN_ID;
+            token.tokenType = compiler.Lexic.TokenType.TKN_ID;
             return token;
 
         }
-        private Token FindToken(){
+        private Token FindToken()
+        {
             Status s = Status.IN_START;
             char c;
             Token token = new Token();
@@ -183,10 +106,10 @@ namespace compiler{
                 {
                     case Status.IN_START:
                         c = GetChar();
-                        while ( IsDelimiter(c) )
+                        while (IsDelimiter(c))
                             c = GetChar();
-                        
-                        if ( Char.IsLetter(c))
+
+                        if (Char.IsLetter(c))
                         {
                             s = Status.IN_ID;
                             token.lexema += c;
@@ -307,11 +230,12 @@ namespace compiler{
                     case Status.IN_NUM:
                         c = GetChar();
                         token.lexema += c;
-                        if ( c == '.')
+                        if (c == '.')
                         {
                             s = Status.IN_DOT;
                         }
-                        else if (!char.IsDigit(c)){
+                        else if (!char.IsDigit(c))
+                        {
                             token.tokenType = TokenType.TKN_NUM;
                             s = Status.IN_DONE;
                             UnGetChar();
@@ -447,13 +371,17 @@ namespace compiler{
 
         private bool IsDelimiter(char c)
         {
-            if (c == ' ' || c == '\n'  || c == '\t' )
+            if (c == ' ' || c == '\n' || c == '\t')
             {
                 return true;
             }
             return false;
         }
-       
+        private List<Token> GetTokenList()
+        {
+            return this.tokens;
+        }
+
 
     }
 }

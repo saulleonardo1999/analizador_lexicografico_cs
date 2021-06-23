@@ -32,11 +32,21 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="Main.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Lexical\TokenType.cs" />
+    <Compile Include="Lexical\LexicalAnalyzer.cs" />
+    <Compile Include="Lexical\Token.cs" />
+    <Compile Include="Syntactic\SyntacticAnalyzer.cs" />
+    <Compile Include="Syntactic\Tree.cs" />
+    <Compile Include="Syntactic\NodeTree.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="EmptyTextFile.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Lexical\" />
+    <Folder Include="Syntactic\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
